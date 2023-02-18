@@ -1,3 +1,12 @@
 {
-	"welcomeMessage": "Hello, World!"
+	"welcomeMessage": "Hello, World!",
+	"groupId": 15224554,
+	"highRankRoles": [
+		"Flight Instructor",
+		"Senior Flight Instructor",
+		"Flight Officer",
+		"Executive Officer",
+		"Commanding Officer",
+		"Air Marshal"
+	]
 }

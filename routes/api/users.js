@@ -1,5 +1,7 @@
+import { getHighRankRoleIds, getUsersByRoles } from "../../utils/roblox.js";
 import { validateUser, User } from "../../models/user.js";
 import express from "express";
+import config from "config";
 
 const router = express.Router();
 
@@ -17,18 +19,35 @@ router.get("/:id", async (req, res) => {
 	res.send(user);
 });
 
-router.post("/", async (req, res) => {
-	const user = await User.findOne({ robloxId: parseInt(req.body.robloxId) });
-	if (user)
-		return res
-			.status(404)
-			.send(`User '${req.body.robloxId}' is already added.`);
+router.put("/", async (req, res) => {
+	const highRankRoleIds = await getHighRankRoleIds(
+		config.get("highRankRoles")
+	);
+	const highRankUsers = await getUsersByRoles(highRankRoleIds);
 
-	const { error, value } = validateUser(req.body);
-	if (error) return res.status(400).send(error);
+	for (const user of highRankUsers) {
+		let userFound = await User.findOne({ robloxId: user.userId });
+		if (!userFound)
+			userFound = new User({
+				robloxId: user.userId,
+				username: user.username,
+				rank: user.rank,
+			});
+		else
+			userFound.set({
+				username: user.username,
+				rank: user.rank,
+			});
 
-	const newUser = new User(value);
-	res.send(await newUser.save());
+		await userFound.save();
+	}
+
+	const users = await User.find();
+	for (const user of users)
+		if (!highRankUsers.find((hr) => hr.userId === user.robloxId))
+			user.delete();
+
+	res.send("Database successfully synced with Roblox!");
 });
 
 router.put("/:id", async (req, res) => {

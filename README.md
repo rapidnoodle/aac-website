@@ -17,8 +17,8 @@ $ npm i
 Set the environment variables for the project (you don't have to use these specific values):
 
 ```
-export PORT=3000
-export MONGO_URI=mongodb://127.0.0.1:27017/database
+$ export PORT=3000
+$ export MONGO_URI=mongodb://127.0.0.1:27017/database
 ```
 
 Open up another, separate terminal in your home directory (NOT PROJECT ROOT) and run the following command (make sure you have Mongo completely installed before you run this command):
