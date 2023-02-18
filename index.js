@@ -8,7 +8,7 @@ import express from "express";
 import helmet from "helmet";
 
 mongoose
-	.connect("mongodb://127.0.0.1:27017/userDB")
+	.connect(process.env.MONGO_URI)
 	.then(() => console.log("Connected to MongoDB..."))
 	.catch((err) => console.warn(err));
 
