@@ -1,0 +1,4 @@
+{
+	"port": "PORT",
+	"mongoURI": "MONGO_URI"
+}

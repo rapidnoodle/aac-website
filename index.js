@@ -1,14 +1,12 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import users from "./routes/api/users.js";
 import routes from "./routes/routes.js";
 import mongoose from "mongoose";
 import express from "express";
 import helmet from "helmet";
+import config from "config";
 
 mongoose
-	.connect(process.env.MONGO_URI)
+	.connect(config.get("mongoURI"))
 	.then(() => console.log("Connected to MongoDB..."))
 	.catch((err) => console.warn(err));
 
@@ -19,5 +17,5 @@ app.use(helmet());
 app.use("/api/users", users);
 app.use("/", routes);
 
-const port = process.env.PORT || 3000;
+const port = config.get("port") || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

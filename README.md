@@ -14,11 +14,11 @@ Launch a new terminal or command prompt depending on your device and install the
 $ npm i
 ```
 
-Create a .env file in the root project directory and set these variables (you don't have to use these specific values):
+Set the environment variables for the project (you don't have to use these specific values):
 
 ```
-PORT=3000
-MONGO_URI=mongodb://127.0.0.1:27017/database
+export PORT=3000
+export MONGO_URI=mongodb://127.0.0.1:27017/database
 ```
 
 Open up another, separate terminal in your home directory (NOT PROJECT ROOT) and run the following command (make sure you have Mongo completely installed before you run this command):
