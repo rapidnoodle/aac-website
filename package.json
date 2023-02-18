@@ -1,0 +1,21 @@
+{
+	"name": "aac-website",
+	"version": "1.0.0",
+	"description": "ReaperAaron's British Army - The Army Air Corps' Official Website",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node index",
+		"dev": "nodemon index"
+	},
+	"author": "rapidnoodle",
+	"license": "ISC",
+	"dependencies": {
+		"config": "^3.3.9",
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
+		"helmet": "^6.0.1",
+		"joi": "^17.7.1",
+		"mongoose": "^6.9.2"
+	}
+}
