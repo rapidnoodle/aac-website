@@ -2,7 +2,7 @@
 
 The Army Air Corps is the aviation branch of the British Army, and AAC soldiers deliver firepower from battlefield helicopters and fixed-wing aircraft to overwhelm and defeat enemy forces. The Army Air Corp also provides aerial reconnaissance while being deployed, so that the enemy forces can be identified and dealt with before they become a threat. This fearsome combination of manoeuvrability and firepower makes the AAC one of the most potent of the Army’s combat arms. It's about time somebody created a website for one of ReaperAaron's greatest regiments.
 
-### Setup
+## Setup
 
 Clone the project using GitHub Desktop or the Git CLI or any other way, it doesn't matter.
 
