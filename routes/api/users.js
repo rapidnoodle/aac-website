@@ -66,15 +66,4 @@ router.put("/:id", async (req, res) => {
 	res.send(await user.save());
 });
 
-router.delete("/:id", async (req, res) => {
-	const user = await User.findOne({ robloxId: parseInt(req.params.id) });
-	if (!user)
-		return res
-			.status(404)
-			.send(`The Roblox ID '${req.params.id}' does not exist.`);
-
-	user.delete();
-	res.send(user);
-});
-
 export default router;

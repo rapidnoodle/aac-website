@@ -1,4 +1,5 @@
 {
 	"port": "PORT",
-	"mongoURI": "MONGO_URI"
+	"mongoURI": "MONGO_URI",
+	"robloxAuthToken": "ROBLOX_AUTH_TOKEN"
 }

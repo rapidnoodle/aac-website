@@ -8,5 +8,11 @@
 		"Executive Officer",
 		"Commanding Officer",
 		"Air Marshal"
-	]
+	],
+	"backgroundCheck": {
+		"minAccountAge": 100,
+		"minGroups": 4,
+		"blacklistedGroups": [2621202, 4219097],
+		"minBadges": 45
+	}
 }
