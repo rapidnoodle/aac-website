@@ -1,5 +1,8 @@
 {
 	"port": "PORT",
 	"mongoURI": "MONGO_URI",
-	"robloxAuthToken": "ROBLOX_AUTH_TOKEN"
+	"robloxAuthToken": "ROBLOX_AUTH_TOKEN",
+	"jwtPrivateKey": "JWT_PRIVATE_KEY",
+	"officerKey": "OFFICER_KEY",
+	"hicomKey": "HICOM_KEY"
 }

@@ -1,5 +1,6 @@
 import backgroundCheck from "./routes/api/background-check.js";
 import users from "./routes/api/users.js";
+import auth from "./routes/api/auth.js";
 import routes from "./routes/routes.js";
 import mongoose from "mongoose";
 import express from "express";
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use(helmet());
 app.use("/api/users", users);
 app.use("/api/background-check", backgroundCheck);
+app.use("/api/auth", auth);
 app.use("/", routes);
 
 const port = config.get("port") || 3000;

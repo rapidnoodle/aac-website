@@ -1,16 +1,17 @@
 import { getHighRankRoleIds, getUsersByRoles } from "../../utils/roblox.js";
 import { validateUser, User } from "../../models/user.js";
+import { auth, hasEdit } from "../../middleware/auth.js";
 import express from "express";
 import config from "config";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
 	const users = await User.find();
 	res.send(users);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, async (req, res) => {
 	const user = await User.findOne({ robloxId: parseInt(req.params.id) });
 	if (!user)
 		return res
@@ -19,7 +20,7 @@ router.get("/:id", async (req, res) => {
 	res.send(user);
 });
 
-router.put("/", async (req, res) => {
+router.put("/", [auth, hasEdit], async (req, res) => {
 	const highRankRoleIds = await getHighRankRoleIds(
 		config.get("highRankRoles")
 	);
@@ -50,7 +51,7 @@ router.put("/", async (req, res) => {
 	res.send("Database successfully synced with Roblox!");
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", [auth, hasEdit], async (req, res) => {
 	const { error, value } = validateUser(req.body);
 	if (error) return res.status(400).send(error);
 
@@ -64,6 +65,24 @@ router.put("/:id", async (req, res) => {
 
 	user.set(value);
 	res.send(await user.save());
+});
+
+router.delete("/quota", [auth, hasEdit], async (req, res) => {
+	const users = await User.find();
+	for (const user of users) {
+		user.set({
+			recentlyPromoted: false,
+			quota: {
+				phases: 0,
+				tryouts: 0,
+				interviews: 0,
+				activityChecks: 0,
+				other: 0,
+			},
+		});
+		user.save();
+	}
+	res.send("The quota has been successfully reset!");
 });
 
 export default router;
